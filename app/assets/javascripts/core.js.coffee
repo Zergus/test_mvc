@@ -5,3 +5,4 @@ class @App
     @formController = new App.FormController
     @historyController = new App.HistoryController
     @formView = new App.FormView(@formController)
+    @historyView = new App.HistoryView(@historyController)

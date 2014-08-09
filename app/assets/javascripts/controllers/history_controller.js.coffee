@@ -1,14 +1,15 @@
 class App.HistoryController extends Core.Controller
 
-  constructor: ->
+  init: ->
     @set 'array', []
     do @onGenerate
-
+  
   onGenerate: ->
-    console.log 1
     $(document).on 'generated', (e, data)=>
-      @get('array').push(data)
-
-  actions: {}
-    # generate: ->
-      # console.log 'DOING!', @get 'link'  }
+      array = @get('array')
+      array.push data
+      @set('array', array)
+  
+  observers:
+    array: ->
+      do @view?.updateItems

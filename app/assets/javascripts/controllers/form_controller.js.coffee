@@ -2,7 +2,7 @@ $.mockjax
   url: '/generate'
   responseTime: 750
   responseText:
-    'ololo!'
+    'itsafaaaaake!'
 
 class App.FormController extends Core.Controller
   actions:

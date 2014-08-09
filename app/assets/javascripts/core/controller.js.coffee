@@ -1,33 +1,36 @@
 class Core.Controller
-  data = {}
 
   @model: {}
   @view: null
 
-  controller: ->
+  constructor: ->
     do @_observer
+    @set.apply @, ['controller', @]
+    @init.apply @, [@]
+
+  init: ->
+    #
 
   do: (action)->
     @actions[action].apply(@, arguments)
 
   get: (key)->
-    return data[key]
+    return @[key]
 
   set: (key, value)->
-    if data[key] isnt value
-      data[key] = value
-      @notify.apply @, {type: 'set', var: data[key]}
+    if @[key] isnt value
+      old = @[key]
+      @[key] = value
+    @_notify {action: 'set', key, value, old}
     return @
 
-  notify: (c, opt)->
-    $(document).trigger("controller.#{opt.type}", {controller: c, var: opt.var}) if opt
+  _notify: (data) ->
+    data = $.extend true, {}, data
+    $(document).trigger 'controller.set', {data}
 
   _observer: ->
-    $(document).on 'controller.set', (e, data)=>
-      @observer data
+    $(document).on 'controller.set', (e, info)=>
+      data = info.data
+      @observers?[data.key]?.apply @, []
 
-  observer: (data)->
-    #
-
-  actions: {
-  }
+  actions: {}

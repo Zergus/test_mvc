@@ -6,6 +6,7 @@ class Core.View
     #
 
   constructor: (@controller)->
+    @controller.set 'view', @
     do @beforeRender
 
   root: (el) ->
