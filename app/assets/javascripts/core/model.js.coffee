@@ -12,5 +12,6 @@ class Core.Model
     return @
 
   createRecord: (data) ->
-    @set data.id, ($.extend true, {}, data)
+    unless data.id is data
+      @set data.id, ($.extend true, {}, data)
     return @get data.id

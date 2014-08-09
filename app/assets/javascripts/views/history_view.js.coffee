@@ -5,4 +5,4 @@ class App.HistoryView extends Core.View
   
   updateItems: ->
     @root.html('')
-    @root.append("<li>#{item}</li>") for item in @controller.get 'array'
+    @root.append("<li>#{item.a}</li>") for item in @controller.get 'array'

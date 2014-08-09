@@ -2,7 +2,11 @@ $.mockjax
   url: '/generate'
   responseTime: 750
   responseText:
-    'itsafaaaaake!'
+    {
+      id: 0
+      a: 'ITSAFAAAAAAAAAAKE!'
+    }
+    
 
 class App.FormController extends Core.Controller
   actions:
@@ -10,6 +14,7 @@ class App.FormController extends Core.Controller
       @get 'origin'
 
       $.ajax
+        dataType: 'json'
         url: '/generate'
         data: {}
         success: (response)->

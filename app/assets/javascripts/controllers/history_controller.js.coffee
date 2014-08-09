@@ -7,7 +7,8 @@ class App.HistoryController extends Core.Controller
   onGenerate: ->
     $(document).on 'generated', (e, data)=>
       array = @get('array')
-      array.push data
+      item = new App.LinkModel().createRecord(data)
+      array.push item
       @set('array', array)
   
   observers:

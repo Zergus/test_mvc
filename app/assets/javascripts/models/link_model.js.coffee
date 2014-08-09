@@ -1,1 +1,1 @@
-class LinkModel extends Core.Model
+class App.LinkModel extends Core.Model
